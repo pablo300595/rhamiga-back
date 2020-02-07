@@ -64,6 +64,27 @@ async function updateUserById(req,res){
     });
 }
 
+async function authUser(req, res){ 
+    const userToAuth = await User.aggregate([
+        {   
+            $lookup: {
+                from: 'candidates',
+                localField: 'candidate',
+                foreignField: '_id',
+                as: 'user_candidate'
+            }
+        },
+        {
+            $match: {
+                username: req.body.username,
+                password: req.body.password
+            }
+        }
+    ]);
+    res.json(userToAuth);
+}
+
 module.exports = {
-    getAllUsers, getUserById, insertUser, deleteUser, updateUserById
+    getAllUsers, getUserById, insertUser, deleteUser, updateUserById,
+    authUser
 }

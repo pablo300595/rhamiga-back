@@ -5,6 +5,7 @@ const db = require('./src/config/db');
 //Routes
 const routerCandidate = require('./src/routes/candidate.route');
 const routerUser = require('./src/routes/user.route');
+const routerSession = require('./src/routes/session.route');
 
 // Server settings
 app.set('port',process.env.PORT||3000);
@@ -24,3 +25,4 @@ app.use(bodyparser.urlencoded({extended:false}));
 //Routing
 app.use('/candidate',routerCandidate);
 app.use('/user', routerUser);
+app.use('/session', routerSession);
