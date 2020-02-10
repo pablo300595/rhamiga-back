@@ -42,13 +42,15 @@ async function getAllSessions(req, res){
 
 async function getSession(req, res){ 
     const searchedSession = await Session.aggregate([
-        {
+        {   
             $lookup: {
                 from: 'users',
                 localField: 'user',
                 foreignField: '_id',
                 as: 'session_user'
-            },
+            }
+        },
+        {
             $match: {
                 _id:ObjectId(req.params.id)
             }
