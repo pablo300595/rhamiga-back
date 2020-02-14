@@ -35,6 +35,11 @@ async function getUserById(req,res){
     res.json(searchedUser);
 }
 
+async function getUserByUsername(req, res){ 
+    const searchedUser = await User.find({username: req.params.id})
+    res.json(searchedUser);
+}
+
 async function insertUser(req,res){ 
     const user = new User(req.body);
     return await user.save().then(() => {
@@ -85,6 +90,6 @@ async function authUser(req, res){
 }
 
 module.exports = {
-    getAllUsers, getUserById, insertUser, deleteUser, updateUserById,
-    authUser
+    getAllUsers, getUserById, getUserByUsername, insertUser, deleteUser, 
+    updateUserById, authUser
 }
