@@ -12,7 +12,7 @@ const CandidateSchema = new Schema({
     city: {type: String, required: true},
     nationality: {type: String, required: true},
     certifications: {type: [Object], required: false},
-    languages: {type:[Object], required: true},
+    languages: {type:[Object], required: false},
     experience: {type: Number, required:false, default:0},
     career: {type: String, required: true},
     degree: {type: String, required: true},
