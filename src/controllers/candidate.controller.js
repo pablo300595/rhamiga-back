@@ -10,6 +10,18 @@ async function getCandidateById(req, res){
     res.json(candidate);
 }
 
+async function getCandidateId(req, res){
+    const candidate = await Candidate.find({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        age: req.body.age,
+        state: req.body.state,
+        city: req.body.city,
+        nationality: req.body.nationality
+    });
+    res.json(candidate[0].id);
+}
+
 async function insertCandidate(req, res) {
     const candidate = new Candidate(req.body);
     return await candidate.save().then(()=>{
@@ -49,5 +61,5 @@ async function updateCandidateById(req, res){
 
 module.exports = {
     getAllCandidates, insertCandidate, deleteCandidate, getCandidateById,
-    updateCandidateById
+    updateCandidateById, getCandidateId
 };
