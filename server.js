@@ -6,6 +6,7 @@ const db = require('./src/config/db');
 const routerCandidate = require('./src/routes/candidate.route');
 const routerUser = require('./src/routes/user.route');
 const routerSession = require('./src/routes/session.route');
+const routerFiles = require('./src/routes/files.route');
 
 // Server settings
 app.set('port',process.env.PORT||3000);
@@ -15,14 +16,15 @@ app.listen(app.get('port'),()=>{
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control');
     next();
 });
 //middleware
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.urlencoded({extended:true}));
 //Routing
 app.use('/candidate',routerCandidate);
 app.use('/user', routerUser);
 app.use('/session', routerSession);
+app.use('/files', routerFiles);
