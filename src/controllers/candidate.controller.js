@@ -39,19 +39,20 @@ async function updateCandidateById(req, res){
     const candidate = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        status: req.body.status,
         age: req.body.age,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
+        sex: req.body.sex,
+        nationality: req.body.nationality,
         state: req.body.state,
         city: req.body.city,
-        nationality: req.body.nationality,
-        languages: req.body.languages,
-        experience: req.body.experience,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
         career: req.body.career,
-        degree: req.body.degree,
+        careerLevel: req.body.careerLevel,
         category: req.body.category,
-        sex: req.body.sex
+        experience: req.body.experience,
+        languages: req.body.languages,
+        resume: req.body.resume,
+        status: req.body.status
     };
     return await Candidate.updateOne({_id: req.params.id},{$set: candidate}, {new: true}).then(()=>{
         res.json({message: 'Candidate updated succesfully!'});
